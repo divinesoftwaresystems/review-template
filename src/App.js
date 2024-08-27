@@ -44,7 +44,7 @@ function App() {
           </Navbar.Brand>
           <Nav className="ml-auto">
             <Nav.Link href="https://maps.google.com/?q=your+location" className="nav-item-right">
-              <FaMapMarkerAlt className='icon-nav'/> Fremont, CA 
+              <FaMapMarkerAlt className='icon-nav'/> 37675 Niles Blvd, Fremont, CA 94536
             </Nav.Link>
           </Nav>
         </Container>

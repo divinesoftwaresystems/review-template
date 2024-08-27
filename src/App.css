@@ -70,6 +70,7 @@
 
 .stars {
   margin: 20px 0;
+
   font-size: 8vw; /* Responsive star size based on viewport width */
 }
 
@@ -209,6 +210,10 @@
   .feedback-card h1 {
     font-size: 6vw; /* Responsive font size based on viewport width */
     margin-bottom: 20px;
+  }
+
+  .icon-nav {
+    margin-left: .5rem;
   }
 }
 
