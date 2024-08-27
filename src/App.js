@@ -4,13 +4,14 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import logo from './logo.webp';  // Importing the logo
+import logo from './logo.webp'; // Importing the logo
 
 function App() {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleStarClick = (stars) => {
     setRating(stars);
@@ -28,19 +29,48 @@ function App() {
     }
   }, [rating]);
 
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+
+    const form = e.target;
+    const data = new FormData(form);
+    const json = Object.fromEntries(data.entries());
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(json),
+      });
+
+      if (response.ok) {
+        console.log("Form submitted successfully");
+        form.reset(); // Reset the form fields
+        setShowModal(false); // Close the modal
+      } else {
+        console.error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
+  };
+
   return (
     <div className="App">
       <Navbar className='navbar-1' bg="dark" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand href="#home" className="d-flex align-items-center">
             <img
-              src={logo}  // Using the imported logo
+              src={logo} // Using the imported logo
               width="50"
               height="50"
               className="d-inline-block align-top"
               alt="Logo"
             />
-            <span className="ml-2 text-white nav-name">Divine Software Systems LLC</span>  {/* Adding text next to the logo */}
+            <span className="ml-2 text-white nav-name">Divine Software Systems LLC</span>
           </Navbar.Brand>
           <Nav className="ml-auto">
             <Nav.Link href="https://maps.google.com/?q=your+location" className="nav-item-right">
@@ -57,6 +87,11 @@ function App() {
               {loading ? (
                 <div className="loading-container">
                   <Spinner animation="border" variant="light" />
+                </div>
+              ) : formSubmitted ? (
+                <div className="thank-you-message">
+                  <h2>Thank you for your feedback!</h2>
+                  <p>We appreciate your input and will use it to improve our services.</p>
                 </div>
               ) : (
                 <>
@@ -82,12 +117,14 @@ function App() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5 }}
+                      style={{ display: formSubmitted ? 'none' : 'block' }} // Hide form when submitted
                     >
                       <form
                         id="feedback-form"
-                        action="https://formspree.io/f/{your-form-id}"
+                        action="https://formspree.io/f/xdknbzok"
                         method="POST"
                         className="feedback-form"
+                        onSubmit={handleFormSubmit}
                       >
                         <h2>We're sorry to hear that!</h2>
                         <Row>
@@ -133,9 +170,10 @@ function App() {
           <h2>We're sorry to hear that!</h2>
           <form
             id="modal-feedback-form"
-            action="https://formspree.io/f/{your-form-id}"
+            action="https://formspree.io/f/xdknbzok"
             method="POST"
             className="feedback-form"
+            onSubmit={handleFormSubmit}
           >
             <input
               type="text"
