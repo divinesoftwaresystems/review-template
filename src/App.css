@@ -1,38 +1,215 @@
-.App {
+.hero-section {
+  padding: 50px;
+  color: white;
+  text-align: center;
+  min-height: 95vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  background-image: url('bgimage.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.nav-link {
+  color: white !important;
+  font-weight: bold;
+  font-size: 1.15rem;
+  letter-spacing: .5px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust height as needed */
+}
+
+
+.navbar-1 {
+  background-color: black !important;
+}
+
+.icon-nav {
+  font-size: 24px;
+  margin-right: 10px;
+  color: rgb(68, 161, 255);
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  z-index: 1; /* Ensure it appears under the content */
+}
+
+.feedback-card {
+  width: 80%;
+  max-width: 800px;
+  background-color: #000000;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  position: relative;
+  margin-top: -100px; /* Adjust this value to move the card higher */
+}
+
+
+.feedback-card h1 {
+  font-size: 4vw; /* Responsive font size based on viewport width */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.stars {
+  margin: 20px 0;
+  font-size: 8vw; /* Responsive star size based on viewport width */
+}
+
+.star {
+  cursor: pointer;
+  color: gray;
+  transition: color 0.3s ease;
+}
+
+.star:hover,
+.star.filled {
+  color: gold;
+}
+
+.feedback-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedback-form {
+  width: 100%;
+  background-color: #000000;
+  padding: 20px;
+  border-radius: 10px;
+  color: black;
+}
+
+.feedback-form h2 {
+  margin-bottom: 20px;
+  margin-top: -1rem;
+  color: white;
+  font-weight: 550;
+  font-size: 2.5vw; /* Responsive font size based on viewport width */
+}
+
+.nav-name {
+  font-weight: bold;
+  margin-left: 1rem;
+  font-size: 1.15rem;
+  letter-spacing: .5px;
+
+}
+
+.feedback-form textarea {
+  width: 100%;
+  height: 150px;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.feedback-form button {
+  width: 20%; /* Adjust the width to make the button smaller */
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  border: none;
+  font-weight: 550;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.5vw; /* Responsive button font size */
+}
+
+.feedback-form button:hover {
+  background-color: rgb(0, 58, 93);
+}
+
+.feedback-modal {
+  background-color: #000000;
+  color: white;
+  padding: 20px;
+}
+
+.feedback-modal h2 {
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-top: 3rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.feedback-form input,
+.feedback-form textarea {
   color: white;
+  border: 1px solid #ccc;
 }
 
-.App-link {
-  color: #61dafb;
+.feedback-form button {
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.feedback-form button:hover {
+  background-color: rgb(0, 75, 120);
+}
+
+
+@media (max-width: 480px) {
+  .stars {
+    margin: 20px 0;
+    font-size: 10vw; /* Responsive star size based on viewport width */
   }
-  to {
-    transform: rotate(360deg);
+
+  .feedback-card h1 {
+    font-size: 6vw; /* Responsive font size based on viewport width */
+    margin-bottom: 20px;
   }
 }
+
+
+
+@media (max-width: 768px) {
+  .feedback-card {
+    width: 100%;
+    margin-top: -180px; /* Adjust this value to move the card higher */
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0; /* Remove border-radius for full-width */
+  }
+}
+
+@media (max-width: 480px) {
+  .stars {
+    margin: 20px 0;
+    font-size: 10vw; /* Responsive star size based on viewport width */
+  }
+
+  .feedback-card h1 {
+    font-size: 6vw; /* Responsive font size based on viewport width */
+    margin-bottom: 20px;
+  }
+}
+
+
